@@ -7,14 +7,15 @@ const _record = async (camera) => {
 }
 
 setTimeout(function(){
-    // const seconds = 5 * 1000
-    const minutes = 1 * 60 * 1000
+    const seconds = 5 * 1000
+    // const minutes = 1 * 60 * 1000
+    console.log('__dirname', __dirname)
     const myCamera = new PiCamera({
         mode: 'video',
         output: `${ __dirname }/video.h264`,
         width: 1920,
         height: 1080,
-        timeout: minutes, // Record for 5 seconds
+        timeout: seconds, // Record for 5 seconds
         nopreview: true,
     })
 
