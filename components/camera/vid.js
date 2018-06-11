@@ -11,7 +11,8 @@ const myCamera = new PiCamera({
 myCamera.record()
     .then((result) => {
         // Your video was captured
+        console.log(`captured ${ __dirname }/video.h264`)
     })
     .catch((error) => {
-        // Handle your error
+        console.log('error', error)
     });
