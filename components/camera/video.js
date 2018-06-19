@@ -23,4 +23,4 @@ setTimeout(function(){
         console.log('video captured')
     }).catch(err =>  console.log('error capturing video', err)
     )
-}, 3000)
+}, 10000)

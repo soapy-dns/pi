@@ -6,6 +6,7 @@ const myCamera = new PiCamera({
     height: 1080,
     timeout: 5000, // Record for 5 seconds
     nopreview: true,
+    verbose: true
 });
 
 myCamera.record()
@@ -16,3 +17,5 @@ myCamera.record()
     .catch((error) => {
         console.log('error', error)
     });
+
+// raspivid --width 1920 --height 1080 -o vid.h264
