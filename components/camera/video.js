@@ -2,10 +2,10 @@
 const PiCamera = require('pi-camera')
 
 const _record = async (camera) => {
-        await camera.record()
-    // return Promise.resolve()
+        // await camera.record()
+    return Promise.resolve()
 }
-
+const vidLen = 10 * 1000 // 10 seconds
 setTimeout(function(){
     const seconds = 5 * 1000
     // const minutes = 1 * 60 * 1000
@@ -23,4 +23,5 @@ setTimeout(function(){
         console.log('video captured')
     }).catch(err =>  console.log('error capturing video', err)
     )
-}, 10000)
+}, vidLen)
+console.log(`Waiting for ${vidLen}ms`)
