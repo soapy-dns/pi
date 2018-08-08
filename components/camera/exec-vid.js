@@ -25,14 +25,20 @@ const _fileExists = () => {
 }
 
 const _takeVideo = (fileName, time) => {
-    const command = `raspivid -o ${fileName} -t ${time}`
-    console.log('command', command)
+    return new Promise((resolve, reject) => {
+        const command = `raspivid -o ${fileName} -t ${time}`
+        console.log('command', command)
 
-    const child = cp.exec(command, (err, child_stdout, child_stderr) => {
-        if (err) return console.log('err', err, child_stderr)
+        const child = cp.exec(command, (err, child_stdout, child_stderr) => {
+            if (err) {
+                console.log('err', err, child_stderr)
+                return reject(err)
+            }
 
-        console.log('stdout', child_stdout)
+            resolve()
+        })
     })
+
 }
 
 const _doIt = async (args) => {
@@ -44,13 +50,13 @@ const _doIt = async (args) => {
         const exists = await _fileExists(fileName)
         console.log('exists', exists)
         if (!exists) {
-            _takeVideo(fileName, args.t)
+            await _takeVideo(fileName, args.t)
         } else {
             console.log('file already exists')
         }
     } else {
         fileName = `${__dirname}/vid-${moment().format('YYYYMMDDHHmmss')}.h264`
-        _takeVideo(fileName, args.t)
+        await _takeVideo(fileName, args.t)
     }
 }
 
